@@ -17,8 +17,8 @@ import { useNavigation } from '@react-navigation/native';
 const user = {
   id: 'u1',
   image:
-    'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg',
-  name: 'Vadim Savin',
+    'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/jeff.jpeg',
+  name: 'Jeff Bezos',
 };
 
 const CreatePostScreen = () => {

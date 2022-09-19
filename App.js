@@ -3,8 +3,22 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Navigation from './src/navigation';
+import { Amplify, Auth } from 'aws-amplify';
+import awsconfig from './src/aws-exports';
+import { withAuthenticator } from 'aws-amplify-react-native';
+import { useEffect, useState } from 'react';
 
-export default function App() {
+Amplify.configure({ ...awsconfig, Analytics: { disabled: true } });
+
+const App = () => {
+  const [authUser, setAuthUser] = useState(null);
+
+  useEffect(() => {
+    Auth.currentAuthenticatedUser().then(setAuthUser);
+  }, []);
+
+  console.log(authUser);
+
   return (
     <SafeAreaProvider>
       <NavigationContainer style={styles.container}>
@@ -13,7 +27,7 @@ export default function App() {
       </NavigationContainer>
     </SafeAreaProvider>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -22,3 +36,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+export default withAuthenticator(App);
+
+// 1:46:20

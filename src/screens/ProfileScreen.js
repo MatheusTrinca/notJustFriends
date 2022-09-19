@@ -18,6 +18,7 @@ import {
   Entypo,
 } from '@expo/vector-icons';
 import user from '../../assets/data/user.json';
+import { Auth } from 'aws-amplify';
 
 const dummy_img =
   'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/user.png';
@@ -29,7 +30,7 @@ const ProfileScreenHeader = ({ user, isMe = false }) => {
   const navigation = useNavigation();
 
   const signOut = async () => {
-    console.warn('Sign out');
+    Auth.signOut();
   };
 
   if (!user) {
@@ -93,7 +94,7 @@ const ProfileScreenHeader = ({ user, isMe = false }) => {
           color="gray"
           style={{ width: 25 }}
         />
-        <Text>From Tenerife</Text>
+        <Text>From Everywhere</Text>
       </View>
     </View>
   );
